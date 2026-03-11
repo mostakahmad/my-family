@@ -52,6 +52,11 @@
   <div class="score-card">
     <span class="sc-icon">🏆</span>
     <div class="sc-group">
+      <span class="sc-lbl">Level</span>
+      <span class="sc-val" id="currentLevel">1</span>
+    </div>
+    <div class="sc-sep"></div>
+    <div class="sc-group">
       <span class="sc-lbl">স্কোর</span>
       <span class="sc-val" id="totalScore">০</span>
     </div>
@@ -131,6 +136,39 @@
 
 <!-- ── SCREEN FLASH ── -->
 <div class="screen-flash" id="screenFlash" aria-hidden="true"></div>
+
+<!-- ── LEVEL TRANSITION OVERLAY ── -->
+<div class="level-overlay" id="levelOverlay">
+  <div class="level-box">
+    <div class="lb-star">🌟</div>
+    <h1 id="levelTitle">Congratulations Winner! 🏆</h1>
+    <p id="levelDesc">আপনি ২০ পয়েন্ট অতিক্রম করেছেন! এবার লেভেল ২: মেমোরি চ্যালেঞ্জ শুরু করুন।</p>
+    <button class="btn-ok" id="startLevel2Btn">শুরু করি! 🎮</button>
+  </div>
+</div>
+
+<!-- ── LEVEL 2 CONTAINER ── -->
+<div class="level2-container" id="level2Container">
+  <div class="l2-header">
+    <div class="l2-timer" id="l2Timer">৫</div>
+    <div class="l2-prompt" id="l2Prompt">সদস্যদের অবস্থান মনে রাখুন!</div>
+    <div class="l2-stats">
+      <span>সঠিক: <b id="l2Right">০</b></span> | 
+      <span>ভুল: <b id="l2Wrong">০</b></span>
+    </div>
+  </div>
+  <div class="memory-grid" id="memoryGrid"></div>
+</div>
+
+<!-- ── VICTORY/DEFEAT OVERLAY ── -->
+<div class="victory-overlay" id="victoryOverlay">
+  <div class="v-cup-box">
+    <div class="v-cup" id="finalCup">🏆</div>
+    <h1 id="victoryTitle">আপনি বিজয়ী!</h1>
+    <p id="victoryDesc">দুর্দান্ত খেলেছেন! আপনার মেমোরি পাওয়ার অসাধারণ।</p>
+    <button class="btn-ok" onclick="location.reload()">আবার খেলুন 🔄</button>
+  </div>
+</div>
 
 <!-- ── DETAIL ZOOM MODAL ── -->
 <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">

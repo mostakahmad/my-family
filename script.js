@@ -224,7 +224,10 @@ const SFX = (() => {
     btnPress(){ ramp(500,350,'sine',.06,.25); },
     modalOpen(){ ramp(400,600,'sine',.12,.2); },
     modalClose(){ ramp(600,400,'sine',.1,.18); },
-    zoom(){ [440,554,659,880].forEach((f,i)=>note(f,'sine',.25,.15,i*.05)); }
+    zoom(){ [440,554,659,880].forEach((f,i)=>note(f,'sine',.25,.15,i*.05)); },
+    tick() { note(880, 'sine', 0.05, 0.2); },
+    match() { [523, 659, 784, 1046].forEach((f,i)=>note(f,'sine',.15,.2,i*.05)); },
+    error() { [330, 261, 196].forEach((f,i)=>note(f,'sawtooth',.2,.15,i*.1)); }
   };
 })();
 
@@ -236,6 +239,10 @@ const GS = {
   history: [], currentAction: null, selectedIds: [],
   combo: 0, comboTimer: null,
   members: {},  // id → { el (bubble), podId }
+  level: 1,
+  l2Right: 0, l2Wrong: 0, l2TargetId: null,
+  l2Phase: 'idle', // 'memorizing' | 'guessing'
+  l2Sequence: []
 };
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -670,6 +677,11 @@ function updateScoreDisplay() {
   document.getElementById('totalScore').textContent   = toBn(GS.score);
   document.getElementById('successCount').textContent = toBn(GS.successCount);
   document.getElementById('failCount').textContent    = toBn(GS.failCount);
+  document.getElementById('currentLevel').textContent = toBn(GS.level);
+
+  if (GS.level === 1 && GS.score >= 20) {
+    initLevel2();
+  }
 }
 
 function addHistory(item) {
@@ -787,6 +799,156 @@ function init() {
   wireEvents();
   updateScoreDisplay();
   renderHistory();
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ২০. LEVEL 2: BRAIN GAME LOGIC
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function initLevel2() {
+  GS.level = 2;
+  document.getElementById('levelOverlay').classList.add('show');
+  document.getElementById('startLevel2Btn').onclick = () => {
+    document.getElementById('levelOverlay').classList.remove('show');
+    startLevel2Game();
+  };
+}
+
+function startLevel2Game() {
+  document.getElementById('level2Container').classList.add('show');
+  GS.l2Right = 0; GS.l2Wrong = 0;
+  updateL2Stats();
+  
+  // Robust Shuffle (Fisher-Yates)
+  const members = [...FAMILY_DATA];
+  for (let i = members.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [members[i], members[j]] = [members[j], members[i]];
+  }
+  GS.l2Sequence = members;
+  renderMemoryGrid();
+  startLevel2Countdown();
+}
+
+function renderMemoryGrid() {
+  const grid = document.getElementById('memoryGrid');
+  grid.innerHTML = '';
+  GS.l2Sequence.forEach(m => {
+    const card = document.createElement('div');
+    card.className = 'memory-card flipped'; // Start visible
+    card.id = `mem-${m.id}`;
+    card.innerHTML = `
+      <div class="mc-inner">
+        <div class="mc-front"></div>
+        <div class="mc-back">
+          <img src="${m.avatar.img || ''}" alt="">
+        </div>
+        <div class="mc-status" id="status-${m.id}"></div>
+      </div>
+    `;
+    card.onclick = () => handleLevel2Guess(m.id);
+    grid.appendChild(card);
+  });
+}
+
+function startLevel2Countdown() {
+  GS.l2Phase = 'memorizing';
+  let timeLeft = 5;
+  const timerEl = document.getElementById('l2Timer');
+  const promptEl = document.getElementById('l2Prompt');
+  
+  timerEl.textContent = toBn(timeLeft);
+  promptEl.textContent = 'সদস্যদের অবস্থান মনে রাখুন!';
+  
+  const tick = setInterval(() => {
+    timeLeft--;
+    if (timeLeft >= 0) {
+      timerEl.textContent = toBn(timeLeft);
+      SFX.tick();
+    }
+    if (timeLeft === 0) {
+      clearInterval(tick);
+      setTimeout(startLevel2Guessing, 1000);
+    }
+  }, 1000);
+}
+
+function startLevel2Guessing() {
+  GS.l2Phase = 'guessing';
+  document.getElementById('memoryGrid').classList.add('hide-face'); // Flip all cards back
+  document.querySelectorAll('.memory-card').forEach(el => el.classList.remove('flipped'));
+  
+  pickNextL2Target();
+}
+
+function pickNextL2Target() {
+  const remaining = GS.l2Sequence.filter(m => !document.getElementById(`mem-${m.id}`).classList.contains('done'));
+  if (remaining.length === 0 || (GS.l2Right + GS.l2Wrong >= 6)) { // Play 6 rounds
+    finishLevel2();
+    return;
+  }
+  
+  const target = remaining[Math.floor(Math.random() * remaining.length)];
+  GS.l2TargetId = target.id;
+  document.getElementById('l2Prompt').textContent = `খুঁজে বের করুন: ${target.nameBn}`;
+  document.getElementById('l2Timer').textContent = '?';
+}
+
+function handleLevel2Guess(id) {
+  if (GS.l2Phase !== 'guessing') return;
+  const card = document.getElementById(`mem-${id}`);
+  if (card.classList.contains('done')) return;
+  
+  const isCorrect = id === GS.l2TargetId;
+  card.classList.add('flipped', 'done');
+  
+  const status = document.getElementById(`status-${id}`);
+  status.textContent = isCorrect ? '✅' : '❌';
+  status.className = `mc-status show ${isCorrect ? 'correct' : 'wrong'}`;
+  
+  if (isCorrect) {
+    GS.l2Right++;
+    GS.score += 50;
+    SFX.match();
+  } else {
+    GS.l2Wrong++;
+    GS.score -= 20;
+    SFX.error();
+  }
+  
+  updateL2Stats();
+  updateScoreDisplay();
+  
+  GS.l2Phase = 'waiting';
+  setTimeout(() => {
+    GS.l2Phase = 'guessing';
+    pickNextL2Target();
+  }, 1200);
+}
+
+function updateL2Stats() {
+  document.getElementById('l2Right').textContent = toBn(GS.l2Right);
+  document.getElementById('l2Wrong').textContent = toBn(GS.l2Wrong);
+}
+
+function finishLevel2() {
+  const won = GS.l2Right >= GS.l2Wrong;
+  const ov = document.getElementById('victoryOverlay');
+  const cup = document.getElementById('finalCup');
+  const title = document.getElementById('victoryTitle');
+  const desc = document.getElementById('victoryDesc');
+  
+  ov.classList.add('show');
+  if (won) {
+    cup.textContent = '🏆';
+    title.textContent = 'আপনি বিজয়ী!';
+    desc.textContent = `অসাধারণ! আপনার মেমোরি পাওয়ার দুর্দান্ত। মোট স্কোর: ${toBn(GS.score)}`;
+    SFX.successBig();
+  } else {
+    cup.textContent = '💔';
+    title.textContent = 'চেষ্টা করুন!';
+    desc.textContent = `আফসোস! ভুল উত্তর বেশি হয়ে গেছে। আবার প্র্যাকটিস করুন।`;
+    SFX.fail();
+  }
 }
 
 document.addEventListener('DOMContentLoaded', init);
