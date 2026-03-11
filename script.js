@@ -222,6 +222,9 @@ const SFX = (() => {
     reset()   { [784,659,523,392].forEach((f,i)=>note(f,'sine',.14,.2,i*.08)); },
     histOpen(){ ramp(300,500,'sine',.1,.18); },
     btnPress(){ ramp(500,350,'sine',.06,.25); },
+    modalOpen(){ ramp(400,600,'sine',.12,.2); },
+    modalClose(){ ramp(600,400,'sine',.1,.18); },
+    zoom(){ [440,554,659,880].forEach((f,i)=>note(f,'sine',.25,.15,i*.05)); }
   };
 })();
 
@@ -377,6 +380,7 @@ function buildPersonGrid(disabledId) {
 
 function onPersonPick(id) {
   const step = GS.selectedIds.length + 1;
+  const m = memberMap[id];
   if (step === 1) {
     GS.selectedIds = [id];
     glowBubble(id, 'selected-1');
@@ -384,7 +388,11 @@ function onPersonPick(id) {
     setStep(2);
     buildPersonGrid(id);
   } else {
-    if (id === GS.selectedIds[0]) { showToast('একই ব্যক্তি দুইবার নির্বাচন করা যাবে না! 😄','warning'); return; }
+    if (id === GS.selectedIds[0]) { 
+      SFX.fail();
+      showToast('একই ব্যক্তি দুইবার নির্বাচন করা যাবে না! 😄','warning'); 
+      return; 
+    }
     GS.selectedIds.push(id);
     glowBubble(id, 'selected-2');
     SFX.select2();
@@ -395,8 +403,48 @@ function onPersonPick(id) {
 }
 
 function onBubbleClick(id) {
-  if (!GS.currentAction) return;
+  if (!GS.currentAction) {
+    // Zoom/Detail mode if no action is active
+    openDetailModal(id);
+    return;
+  }
   onPersonPick(id);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ১০. DETAIL ZOOM MODAL
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+let detailModal = null;
+
+function openDetailModal(id) {
+  const m = memberMap[id];
+  if (!m) return;
+
+  const relToMostak = getRelation(id, 'mostak').labelBn;
+
+  document.getElementById('detailName').textContent = m.nameBn;
+  document.getElementById('detailTitle').textContent = m.name;
+  document.getElementById('detailMemberId').textContent = m.id.toUpperCase();
+  document.getElementById('detailGen').textContent = toBn(m.generation + 1);
+  
+  const avatarEl = document.getElementById('detailAvatar');
+  if (m.avatar.img) {
+    avatarEl.innerHTML = `<img src="${m.avatar.img}" alt="${m.nameBn}">`;
+  } else {
+    avatarEl.style.background = m.avatar.color;
+    avatarEl.textContent = m.avatar.initials || m.name[0];
+  }
+
+  const bios = [
+    `${m.nameBn} পরিবারের একজন অত্যন্ত প্রিয় সদস্য।`,
+    `${m.nameBn} সবসময় হাসি-খুশি থাকতে ভালোবাসেন।`,
+    `ঈদের এই দিনে ${m.nameBn}-এর উপস্থিতি আমাদের আনন্দ আরও বাড়িয়ে দেয়।`
+  ];
+  document.getElementById('detailBio').textContent = bios[Math.floor(Math.random() * bios.length)];
+
+  SFX.zoom();
+  detailModal = detailModal || new bootstrap.Modal(document.getElementById('detailModal'));
+  detailModal.show();
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -587,6 +635,7 @@ function showResultModal({ p1, p2, rel, ac, ok, pts, msg }) {
   const p1Content = p1.avatar.img ? `<img src="${p1.avatar.img}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">` : (p1.avatar.initials || p1.name[0]);
   const p2Content = p2.avatar.img ? `<img src="${p2.avatar.img}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">` : (p2.avatar.initials || p2.name[0]);
 
+  SFX.btnPress(); // Sound for "ঠিক আছে" interaction implicitly or via close
   body.innerHTML = `
     <div class="result-persons">
       <div class="result-person">
@@ -702,7 +751,18 @@ function wireEvents() {
   });
 
   /* Reset */
-  document.getElementById('resetBtn').addEventListener('click', resetGame);
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    SFX.btnPress();
+    resetGame();
+  });
+
+  /* Modal event sounds */
+  ['selectionModal', 'resultModal', 'detailModal'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('show.bs.modal', SFX.modalOpen);
+    el.addEventListener('hide.bs.modal', SFX.modalClose);
+  });
 
   /* Selection modal dismissed → cleanup */
   document.getElementById('selectionModal').addEventListener('hidden.bs.modal', () => {

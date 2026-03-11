@@ -9,6 +9,20 @@
   <meta name="theme-color" content="#0a0015"/>
   <title>ঈদ ফ্যামিলি গেম 🌙</title>
   <meta name="description" content="পারিবারিক বন্ধন উদযাপনের মজাদার ঈদ গেম"/>
+  
+  <!-- Open Graph / Social Media Preview -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://mostakahmad.github.io/my-family/"/>
+  <meta property="og:title" content="🌙 ঈদ ফ্যামিলি ইন্টারঅ্যাকশন গেম ✨"/>
+  <meta property="og:description" content="একটি মজার ও ইন্টারঅ্যাকটিভ ঈদ গেম। পরিবারের সদস্যদের সাথে মজার সব অ্যাকশন আর বন্ধন উদযাপনে মেতে উঠুন!"/>
+  <meta property="og:image" content="https://raw.githubusercontent.com/mostakahmad/my-family/main/images/mostak.svg"/> <!-- Using an SVG as placeholder, ideally replace with a high-res JPG/PNG banner -->
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image"/>
+  <meta property="twitter:url" content="https://mostakahmad.github.io/my-family/"/>
+  <meta property="twitter:title" content="🌙 ঈদ ফ্যামিলি ইন্টারঅ্যাকশন গেম ✨"/>
+  <meta property="twitter:description" content="একটি মজার ও ইন্টারঅ্যাকটিভ ঈদ গেম। পরিবারের সদস্যদের সাথে মজার সব অ্যাকশন আর বন্ধন উদযাপনে মেতে উঠুন!"/>
+  <meta property="twitter:image" content="https://raw.githubusercontent.com/mostakahmad/my-family/main/images/mostak.svg"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet"/>
@@ -118,7 +132,32 @@
 <!-- ── SCREEN FLASH ── -->
 <div class="screen-flash" id="screenFlash" aria-hidden="true"></div>
 
-<!-- ── SELECTION MODAL ── -->
+<!-- ── DETAIL ZOOM MODAL ── -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content dm-zoom-content">
+      <div class="dm-close" data-bs-dismiss="modal">✕</div>
+      <div class="modal-body text-center p-4">
+        <div class="dm-avatar-wrap">
+          <div class="dm-avatar" id="detailAvatar"></div>
+        </div>
+        <h2 class="dm-name" id="detailName">নাম</h2>
+        <p class="dm-title" id="detailTitle">উপাধি</p>
+        <div class="dm-info-grid">
+          <div class="dm-info-item">
+            <span class="dm-info-lbl">সদস্য</span>
+            <span class="dm-info-val" id="detailMemberId">ID</span>
+          </div>
+          <div class="dm-info-item">
+            <span class="dm-info-lbl">জেনারেশন</span>
+            <span class="dm-info-val" id="detailGen">১</span>
+          </div>
+        </div>
+        <div class="dm-bio" id="detailBio">ঈদের আনন্দ সবার সাথে ভাগ করে নিতে এই গেমটি খেলুন!</div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="selectionModal" tabindex="-1" aria-modal="true" role="dialog">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down modal-lg">
     <div class="modal-content gm-modal">
