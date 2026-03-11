@@ -852,7 +852,7 @@ function renderMemoryGrid() {
 
 function startLevel2Countdown() {
   GS.l2Phase = 'memorizing';
-  let timeLeft = 5;
+  let timeLeft = 20;
   const timerEl = document.getElementById('l2Timer');
   const promptEl = document.getElementById('l2Prompt');
 
