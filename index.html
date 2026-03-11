@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#1a0a2e" />
+  <title>ঈদ ফ্যামিলি ইন্টারঅ্যাকশন গেম</title>
+  <meta name="description"
+    content="পারিবারিক সম্পর্ক, মাহরাম লজিক ও ঈদের উৎসব নিয়ে তৈরি একটি ইন্টারঅ্যাকটিভ পারিবারিক গেম।" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Kalpurush&display=swap"
+    rel="stylesheet" />
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+     DECORATIVE BACKGROUND ELEMENTS
+     চাঁদ, তারা, লণ্ঠন ইত্যাদি ডেকোরেটিভ উপাদান
+     ============================================================ -->
+  <div class="bg-decorations" aria-hidden="true">
+    <div class="moon">🌙</div>
+    <div class="star star-1">⭐</div>
+    <div class="star star-2">✨</div>
+    <div class="star star-3">⭐</div>
+    <div class="star star-4">✨</div>
+    <div class="star star-5">⭐</div>
+    <div class="lantern lantern-1">🪔</div>
+    <div class="lantern lantern-2">🪔</div>
+    <div class="crescent crescent-1">☽</div>
+    <div class="crescent crescent-2">☽</div>
+  </div>
+
+  <!-- ============================================================
+     HEADER: TITLE BANNER
+     শীর্ষে গেমের নাম
+     ============================================================ -->
+  <header class="game-header text-center">
+    <h1 class="game-title">🌙 ঈদ ফ্যামিলি ইন্টারঅ্যাকশন গেম ✨</h1>
+    <p class="game-subtitle">পারিবারিক বন্ধন উদযাপন করুন — ঈদের আনন্দে!</p>
+  </header>
+
+  <!-- ============================================================
+     TOP BAR: SCORE + HISTORY TOGGLE
+     স্কোরবোর্ড ও হিস্টোরি প্যানেল টগল বাটন
+     ============================================================ -->
+  <div class="top-bar">
+    <!-- Score Board -->
+    <div class="score-card" id="scoreCard">
+      <div class="score-icon">🏆</div>
+      <div class="score-info">
+        <span class="score-label">মোট স্কোর</span>
+        <span class="score-value" id="totalScore">0</span>
+      </div>
+      <div class="score-divider"></div>
+      <div class="score-info">
+        <span class="score-label">সফল</span>
+        <span class="score-value success-val" id="successCount">0</span>
+      </div>
+      <div class="score-info">
+        <span class="score-label">বাতিল</span>
+        <span class="score-value fail-val" id="failCount">0</span>
+      </div>
+    </div>
+
+    <!-- History Toggle Button -->
+    <button class="btn btn-history" id="historyToggleBtn" title="ইন্টারঅ্যাকশন ইতিহাস">
+      <i class="bi bi-clock-history"></i>
+      <span>ইতিহাস</span>
+    </button>
+
+    <!-- Reset Button -->
+    <button class="btn btn-reset" id="resetBtn" title="রিসেট করুন">
+      <i class="bi bi-arrow-counterclockwise"></i>
+      <span>রিসেট</span>
+    </button>
+  </div>
+
+  <!-- ============================================================
+     HISTORY SIDEBAR PANEL
+     সাম্প্রতিক ইন্টারঅ্যাকশন ইতিহাস প্যানেল
+     ============================================================ -->
+  <aside class="history-panel" id="historyPanel" aria-label="সাম্প্রতিক ইন্টারঅ্যাকশন ইতিহাস">
+    <div class="history-header">
+      <h2><i class="bi bi-journal-text"></i> সাম্প্রতিক কার্যক্রম</h2>
+      <button class="btn-close-history" id="closeHistoryBtn" aria-label="বন্ধ করুন">✕</button>
+    </div>
+    <ul class="history-list" id="historyList">
+      <li class="history-empty">এখনো কোনো কার্যক্রম নেই।</li>
+    </ul>
+  </aside>
+
+  <!-- ============================================================
+     MAIN GAME CANVAS AREA
+     অ্যাভাটার বাবল ভাসার এরিয়া (floating avatars)
+     ============================================================ -->
+  <main class="game-canvas" id="gameCanvas" aria-label="ফ্যামিলি গেম ক্যানভাস">
+    <!-- Avatar bubbles are injected here by JavaScript -->
+    <!-- JS দ্বারা এখানে avatar bubble গুলো ইনজেক্ট করা হবে -->
+  </main>
+
+  <!-- ============================================================
+     BOTTOM ACTION PANEL
+     নিচে ফিক্সড অ্যাকশন বাটন প্যানেল
+     ============================================================ -->
+  <footer class="action-panel" id="actionPanel">
+    <div class="action-label">কার্যক্রম বেছে নিন:</div>
+    <div class="action-buttons">
+      <button class="btn action-btn btn-greet" id="btnGreet" data-action="greet">
+        <span class="action-icon">🤲</span>
+        <span class="action-text">শুভেচ্ছা</span>
+        <span class="action-pts">+৫</span>
+      </button>
+      <button class="btn action-btn btn-salami" id="btnSalami" data-action="salami">
+        <span class="action-icon">💰</span>
+        <span class="action-text">সালামি নেওয়া</span>
+        <span class="action-pts">+১০</span>
+      </button>
+      <button class="btn action-btn btn-hug" id="btnHug" data-action="hug">
+        <span class="action-icon">🤗</span>
+        <span class="action-text">কোলাকুলি</span>
+        <span class="action-pts">+৮</span>
+      </button>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+     SELECTION MODAL
+     ব্যক্তি নির্বাচন মোডাল (Step 1 & Step 2)
+     ============================================================ -->
+  <div class="modal fade" id="selectionModal" tabindex="-1" aria-labelledby="selectionModalLabel" aria-modal="true"
+    role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down modal-lg">
+      <div class="modal-content selection-modal-content">
+        <div class="modal-header selection-modal-header">
+          <h5 class="modal-title" id="selectionModalLabel">ব্যক্তি নির্বাচন করুন</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+            aria-label="বন্ধ করুন"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Step indicator -->
+          <div class="step-indicator" id="stepIndicator">
+            <div class="step-dot active" id="stepDot1"></div>
+            <div class="step-line"></div>
+            <div class="step-dot" id="stepDot2"></div>
+          </div>
+          <p class="selection-prompt" id="selectionPrompt">প্রথম ব্যক্তি নির্বাচন করুন</p>
+
+          <!-- Selected persons preview -->
+          <div class="selected-preview" id="selectedPreview">
+            <div class="preview-slot" id="previewSlot1">
+              <div class="preview-avatar empty-preview">?</div>
+              <span class="preview-name">১ম ব্যক্তি</span>
+            </div>
+            <div class="preview-arrow"><i class="bi bi-arrow-right-circle-fill"></i></div>
+            <div class="preview-slot" id="previewSlot2">
+              <div class="preview-avatar empty-preview">?</div>
+              <span class="preview-name">২য় ব্যক্তি</span>
+            </div>
+          </div>
+
+          <!-- Person grid -->
+          <div class="person-grid" id="personGrid">
+            <!-- JS দ্বারা পপুলেট করা হবে -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+     RESULT MODAL
+     ফলাফল দেখানোর মোডাল
+     ============================================================ -->
+  <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-modal="true"
+    role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
+      <div class="modal-content result-modal-content" id="resultModalContent">
+        <div class="modal-header result-modal-header" id="resultModalHeader">
+          <h5 class="modal-title" id="resultModalLabel">ফলাফল</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+            aria-label="বন্ধ করুন"></button>
+        </div>
+        <div class="modal-body result-modal-body" id="resultModalBody">
+          <!-- Result content injected by JS -->
+        </div>
+        <div class="modal-footer result-modal-footer">
+          <button type="button" class="btn btn-result-ok" data-bs-dismiss="modal" id="resultOkBtn">ঠিক আছে</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+     FLOATING PARTICLE CONTAINER
+     সাফল্যের পার্টিকেল ইফেক্ট কন্টেইনার
+     ============================================================ -->
+  <div class="particle-container" id="particleContainer" aria-hidden="true"></div>
+
+  <!-- ============================================================
+     TOAST NOTIFICATION
+     দ্রুত বার্তার জন্য Toast
+     ============================================================ -->
+  <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3" style="z-index:9999;">
+    <div id="gameToast" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive"
+      aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastBody">বার্তা</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="বন্ধ করুন"></button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Game Script -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>
