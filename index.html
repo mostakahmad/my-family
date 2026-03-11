@@ -1,262 +1,269 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <meta name="mobile-web-app-capable" content="yes"/>
-  <meta name="apple-mobile-web-app-capable" content="yes"/>
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-  <meta name="theme-color" content="#0a0015"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0a0015" />
   <title>ঈদ ফ্যামিলি গেম 🌙</title>
-  <meta name="description" content="পারিবারিক বন্ধন উদযাপনের মজাদার ঈদ গেম"/>
-  
+  <meta name="description" content="পারিবারিক বন্ধন উদযাপনের মজাদার ঈদ গেম" />
+
   <!-- Open Graph / Social Media Preview -->
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://mostakahmad.github.io/my-family/"/>
-  <meta property="og:title" content="🌙 ঈদ ফ্যামিলি ইন্টারঅ্যাকশন গেম ✨"/>
-  <meta property="og:description" content="একটি মজার ও ইন্টারঅ্যাকটিভ ঈদ গেম। পরিবারের সদস্যদের সাথে মজার সব অ্যাকশন আর বন্ধন উদযাপনে মেতে উঠুন!"/>
-  <meta property="og:image" content="https://raw.githubusercontent.com/mostakahmad/my-family/main/images/mostak.svg"/> <!-- Using an SVG as placeholder, ideally replace with a high-res JPG/PNG banner -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mostakahmad.github.io/my-family/" />
+  <meta property="og:title" content="🌙 ঈদ ফ্যামিলি ইন্টারঅ্যাকশন গেম ✨" />
+  <meta property="og:description"
+    content="একটি মজার ও ইন্টারঅ্যাকটিভ ঈদ গেম। পরিবারের সদস্যদের সাথে মজার সব অ্যাকশন আর বন্ধন উদযাপনে মেতে উঠুন!" />
+  <meta property="og:image" content="https://mostakahmad.github.io/my-family/images/family-game.png" />
+  <!-- Using an SVG as placeholder, ideally replace with a high-res JPG/PNG banner -->
 
   <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image"/>
-  <meta property="twitter:url" content="https://mostakahmad.github.io/my-family/"/>
-  <meta property="twitter:title" content="🌙 ঈদ ফ্যামিলি ইন্টারঅ্যাকশন গেম ✨"/>
-  <meta property="twitter:description" content="একটি মজার ও ইন্টারঅ্যাকটিভ ঈদ গেম। পরিবারের সদস্যদের সাথে মজার সব অ্যাকশন আর বন্ধন উদযাপনে মেতে উঠুন!"/>
-  <meta property="twitter:image" content="https://raw.githubusercontent.com/mostakahmad/my-family/main/images/mostak.svg"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css"/>
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://mostakahmad.github.io/my-family/" />
+  <meta property="twitter:title" content="🌙 ঈদ ফ্যামিলি ইন্টারঅ্যাকশন গেম ✨" />
+  <meta property="twitter:description"
+    content="একটি মজার ও ইন্টারঅ্যাকটিভ ঈদ গেম। পরিবারের সদস্যদের সাথে মজার সব অ্যাকশন আর বন্ধন উদযাপনে মেতে উঠুন!" />
+  <meta property="twitter:image" content="https://mostakahmad.github.io/my-family/images/family-game.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<!-- ── BACKGROUND LAYER ── -->
-<div class="bg-layer" aria-hidden="true">
-  <div class="bg-glow g1"></div>
-  <div class="bg-glow g2"></div>
-  <div class="bg-glow g3"></div>
-  <div class="moon-deco">🌙</div>
-  <span class="deco-star s1">✦</span>
-  <span class="deco-star s2">✧</span>
-  <span class="deco-star s3">✦</span>
-  <span class="deco-star s4">✧</span>
-  <span class="deco-star s5">✦</span>
-  <span class="deco-star s6">✧</span>
-  <div class="lantern l1">🪔</div>
-  <div class="lantern l2">🪔</div>
-</div>
-
-<!-- ── FIXED TOP BAR ── -->
-<div class="top-bar" id="topBar">
-  <!-- Score Card -->
-  <div class="score-card">
-    <span class="sc-icon">🏆</span>
-    <div class="sc-group">
-      <span class="sc-lbl">Level</span>
-      <span class="sc-val" id="currentLevel">1</span>
-    </div>
-    <div class="sc-sep"></div>
-    <div class="sc-group">
-      <span class="sc-lbl">স্কোর</span>
-      <span class="sc-val" id="totalScore">০</span>
-    </div>
-    <div class="sc-sep"></div>
-    <div class="sc-group">
-      <span class="sc-lbl">✅</span>
-      <span class="sc-val green" id="successCount">০</span>
-    </div>
-    <div class="sc-group">
-      <span class="sc-lbl">❌</span>
-      <span class="sc-val red" id="failCount">০</span>
-    </div>
+  <!-- ── BACKGROUND LAYER ── -->
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-glow g1"></div>
+    <div class="bg-glow g2"></div>
+    <div class="bg-glow g3"></div>
+    <div class="moon-deco">🌙</div>
+    <span class="deco-star s1">✦</span>
+    <span class="deco-star s2">✧</span>
+    <span class="deco-star s3">✦</span>
+    <span class="deco-star s4">✧</span>
+    <span class="deco-star s5">✦</span>
+    <span class="deco-star s6">✧</span>
+    <div class="lantern l1">🪔</div>
+    <div class="lantern l2">🪔</div>
   </div>
-  <!-- Buttons -->
-  <button class="top-btn" id="historyToggleBtn" title="ইতিহাস">
-    <i class="bi bi-clock-history"></i><span>ইতিহাস</span>
-  </button>
-  <button class="top-btn danger" id="resetBtn" title="রিসেট">
-    <i class="bi bi-arrow-counterclockwise"></i><span>রিসেট</span>
-  </button>
-</div>
 
-<!-- ── GAME TITLE (center, over canvas) ── -->
-<div class="game-title-bar" aria-label="গেম শিরোনাম">
-  <h1 class="game-title">🌙 ঈদ ফ্যামিলি গেম ✨</h1>
-  <p class="game-sub">পরিবার বেছে নিন — উৎসব শুরু হোক!</p>
-</div>
-
-<!-- ── HISTORY BOTTOM SHEET ── -->
-<aside class="history-panel" id="historyPanel">
-  <div class="history-handle"></div>
-  <div class="history-hdr">
-    <span>📜 সাম্প্রতিক কার্যক্রম</span>
-    <button class="hdr-close" id="closeHistoryBtn">✕</button>
-  </div>
-  <ul class="history-list" id="historyList">
-    <li class="h-empty">এখনো কোনো কার্যক্রম নেই।</li>
-  </ul>
-</aside>
-
-<!-- ── MAIN GAME CANVAS (family pods injected here by JS) ── -->
-<main class="game-canvas" id="gameCanvas" aria-label="ফ্যামিলি পড এলাকা"></main>
-
-<!-- ── SVG OVERLAY (connection line between selected members) ── -->
-<svg class="svg-overlay" id="svgOverlay" aria-hidden="true"></svg>
-
-<!-- ── BOTTOM ACTION PANEL ── -->
-<footer class="action-panel" id="actionPanel">
-  <div class="ap-hint">কার্যক্রম বেছে নিন</div>
-  <div class="ap-btns">
-    <button class="act-btn greet" id="btnGreet" data-action="greet">
-      <span class="ab-icon">🤲</span>
-      <span class="ab-label">শুভেচ্ছা</span>
-      <span class="ab-pts">+৫</span>
+  <!-- ── FIXED TOP BAR ── -->
+  <div class="top-bar" id="topBar">
+    <!-- Score Card -->
+    <div class="score-card">
+      <span class="sc-icon">🏆</span>
+      <div class="sc-group">
+        <span class="sc-lbl">Level</span>
+        <span class="sc-val" id="currentLevel">1</span>
+      </div>
+      <div class="sc-sep"></div>
+      <div class="sc-group">
+        <span class="sc-lbl">স্কোর</span>
+        <span class="sc-val" id="totalScore">০</span>
+      </div>
+      <div class="sc-sep"></div>
+      <div class="sc-group">
+        <span class="sc-lbl">✅</span>
+        <span class="sc-val green" id="successCount">০</span>
+      </div>
+      <div class="sc-group">
+        <span class="sc-lbl">❌</span>
+        <span class="sc-val red" id="failCount">০</span>
+      </div>
+    </div>
+    <!-- Buttons -->
+    <button class="top-btn" id="historyToggleBtn" title="ইতিহাস">
+      <i class="bi bi-clock-history"></i><span>ইতিহাস</span>
     </button>
-    <button class="act-btn salami" id="btnSalami" data-action="salami">
-      <span class="ab-icon">💰</span>
-      <span class="ab-label">সালামি</span>
-      <span class="ab-pts">+১০</span>
-    </button>
-    <button class="act-btn hug" id="btnHug" data-action="hug">
-      <span class="ab-icon">🤗</span>
-      <span class="ab-label">কোলাকুলি</span>
-      <span class="ab-pts">+৮</span>
+    <button class="top-btn danger" id="resetBtn" title="রিসেট">
+      <i class="bi bi-arrow-counterclockwise"></i><span>রিসেট</span>
     </button>
   </div>
-</footer>
 
-<!-- ── COMBO DISPLAY ── -->
-<div class="combo-badge" id="comboBadge" aria-live="polite"></div>
-
-<!-- ── SCORE FLOAT CONTAINER ── -->
-<div class="score-floats" id="scoreFloats" aria-hidden="true"></div>
-
-<!-- ── PARTICLE CONTAINER ── -->
-<div class="particle-container" id="particleContainer" aria-hidden="true"></div>
-
-<!-- ── SCREEN FLASH ── -->
-<div class="screen-flash" id="screenFlash" aria-hidden="true"></div>
-
-<!-- ── LEVEL TRANSITION OVERLAY ── -->
-<div class="level-overlay" id="levelOverlay">
-  <div class="level-box">
-    <div class="lb-star">🌟</div>
-    <h1 id="levelTitle">Congratulations Winner! 🏆</h1>
-    <p id="levelDesc">আপনি ২০ পয়েন্ট অতিক্রম করেছেন! এবার লেভেল ২: মেমোরি চ্যালেঞ্জ শুরু করুন।</p>
-    <button class="btn-ok" id="startLevel2Btn">শুরু করি! 🎮</button>
+  <!-- ── GAME TITLE (center, over canvas) ── -->
+  <div class="game-title-bar" aria-label="গেম শিরোনাম">
+    <h1 class="game-title">🌙 ঈদ ফ্যামিলি গেম ✨</h1>
+    <p class="game-sub">পরিবার বেছে নিন — উৎসব শুরু হোক!</p>
   </div>
-</div>
 
-<!-- ── LEVEL 2 CONTAINER ── -->
-<div class="level2-container" id="level2Container">
-  <div class="l2-header">
-    <div class="l2-timer" id="l2Timer">৫</div>
-    <div class="l2-prompt" id="l2Prompt">সদস্যদের অবস্থান মনে রাখুন!</div>
-    <div class="l2-stats">
-      <span>সঠিক: <b id="l2Right">০</b></span> | 
-      <span>ভুল: <b id="l2Wrong">০</b></span>
+  <!-- ── HISTORY BOTTOM SHEET ── -->
+  <aside class="history-panel" id="historyPanel">
+    <div class="history-handle"></div>
+    <div class="history-hdr">
+      <span>📜 সাম্প্রতিক কার্যক্রম</span>
+      <button class="hdr-close" id="closeHistoryBtn">✕</button>
+    </div>
+    <ul class="history-list" id="historyList">
+      <li class="h-empty">এখনো কোনো কার্যক্রম নেই।</li>
+    </ul>
+  </aside>
+
+  <!-- ── MAIN GAME CANVAS (family pods injected here by JS) ── -->
+  <main class="game-canvas" id="gameCanvas" aria-label="ফ্যামিলি পড এলাকা"></main>
+
+  <!-- ── SVG OVERLAY (connection line between selected members) ── -->
+  <svg class="svg-overlay" id="svgOverlay" aria-hidden="true"></svg>
+
+  <!-- ── BOTTOM ACTION PANEL ── -->
+  <footer class="action-panel" id="actionPanel">
+    <div class="ap-hint">কার্যক্রম বেছে নিন</div>
+    <div class="ap-btns">
+      <button class="act-btn greet" id="btnGreet" data-action="greet">
+        <span class="ab-icon">🤲</span>
+        <span class="ab-label">শুভেচ্ছা</span>
+        <span class="ab-pts">+৫</span>
+      </button>
+      <button class="act-btn salami" id="btnSalami" data-action="salami">
+        <span class="ab-icon">💰</span>
+        <span class="ab-label">সালামি</span>
+        <span class="ab-pts">+১০</span>
+      </button>
+      <button class="act-btn hug" id="btnHug" data-action="hug">
+        <span class="ab-icon">🤗</span>
+        <span class="ab-label">কোলাকুলি</span>
+        <span class="ab-pts">+৮</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- ── COMBO DISPLAY ── -->
+  <div class="combo-badge" id="comboBadge" aria-live="polite"></div>
+
+  <!-- ── SCORE FLOAT CONTAINER ── -->
+  <div class="score-floats" id="scoreFloats" aria-hidden="true"></div>
+
+  <!-- ── PARTICLE CONTAINER ── -->
+  <div class="particle-container" id="particleContainer" aria-hidden="true"></div>
+
+  <!-- ── SCREEN FLASH ── -->
+  <div class="screen-flash" id="screenFlash" aria-hidden="true"></div>
+
+  <!-- ── LEVEL TRANSITION OVERLAY ── -->
+  <div class="level-overlay" id="levelOverlay">
+    <div class="level-box">
+      <div class="lb-star">🌟</div>
+      <h1 id="levelTitle">Congratulations Winner! 🏆</h1>
+      <p id="levelDesc">আপনি ২০ পয়েন্ট অতিক্রম করেছেন! এবার লেভেল ২: মেমোরি চ্যালেঞ্জ শুরু করুন।</p>
+      <button class="btn-ok" id="startLevel2Btn">শুরু করি! 🎮</button>
     </div>
   </div>
-  <div class="memory-grid" id="memoryGrid"></div>
-</div>
 
-<!-- ── VICTORY/DEFEAT OVERLAY ── -->
-<div class="victory-overlay" id="victoryOverlay">
-  <div class="v-cup-box">
-    <div class="v-cup" id="finalCup">🏆</div>
-    <h1 id="victoryTitle">আপনি বিজয়ী!</h1>
-    <p id="victoryDesc">দুর্দান্ত খেলেছেন! আপনার মেমোরি পাওয়ার অসাধারণ।</p>
-    <button class="btn-ok" onclick="location.reload()">আবার খেলুন 🔄</button>
+  <!-- ── LEVEL 2 CONTAINER ── -->
+  <div class="level2-container" id="level2Container">
+    <div class="l2-header">
+      <div class="l2-timer" id="l2Timer">৫</div>
+      <div class="l2-prompt" id="l2Prompt">সদস্যদের অবস্থান মনে রাখুন!</div>
+      <div class="l2-stats">
+        <span>সঠিক: <b id="l2Right">০</b></span> |
+        <span>ভুল: <b id="l2Wrong">০</b></span>
+      </div>
+    </div>
+    <div class="memory-grid" id="memoryGrid"></div>
   </div>
-</div>
 
-<!-- ── DETAIL ZOOM MODAL ── -->
-<div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content dm-zoom-content">
-      <div class="dm-close" data-bs-dismiss="modal">✕</div>
-      <div class="modal-body text-center p-4">
-        <div class="dm-avatar-wrap">
-          <div class="dm-avatar" id="detailAvatar"></div>
-        </div>
-        <h2 class="dm-name" id="detailName">নাম</h2>
-        <p class="dm-title" id="detailTitle">উপাধি</p>
-        <div class="dm-info-grid">
-          <div class="dm-info-item">
-            <span class="dm-info-lbl">সদস্য</span>
-            <span class="dm-info-val" id="detailMemberId">ID</span>
+  <!-- ── VICTORY/DEFEAT OVERLAY ── -->
+  <div class="victory-overlay" id="victoryOverlay">
+    <div class="v-cup-box">
+      <div class="v-cup" id="finalCup">🏆</div>
+      <h1 id="victoryTitle">আপনি বিজয়ী!</h1>
+      <p id="victoryDesc">দুর্দান্ত খেলেছেন! আপনার মেমোরি পাওয়ার অসাধারণ।</p>
+      <button class="btn-ok" onclick="location.reload()">আবার খেলুন 🔄</button>
+    </div>
+  </div>
+
+  <!-- ── DETAIL ZOOM MODAL ── -->
+  <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content dm-zoom-content">
+        <div class="dm-close" data-bs-dismiss="modal">✕</div>
+        <div class="modal-body text-center p-4">
+          <div class="dm-avatar-wrap">
+            <div class="dm-avatar" id="detailAvatar"></div>
           </div>
-          <div class="dm-info-item">
-            <span class="dm-info-lbl">জেনারেশন</span>
-            <span class="dm-info-val" id="detailGen">১</span>
+          <h2 class="dm-name" id="detailName">নাম</h2>
+          <p class="dm-title" id="detailTitle">উপাধি</p>
+          <div class="dm-info-grid">
+            <div class="dm-info-item">
+              <span class="dm-info-lbl">সদস্য</span>
+              <span class="dm-info-val" id="detailMemberId">ID</span>
+            </div>
+            <div class="dm-info-item">
+              <span class="dm-info-lbl">জেনারেশন</span>
+              <span class="dm-info-val" id="detailGen">১</span>
+            </div>
           </div>
+          <div class="dm-bio" id="detailBio">ঈদের আনন্দ সবার সাথে ভাগ করে নিতে এই গেমটি খেলুন!</div>
         </div>
-        <div class="dm-bio" id="detailBio">ঈদের আনন্দ সবার সাথে ভাগ করে নিতে এই গেমটি খেলুন!</div>
       </div>
     </div>
   </div>
-</div>
-<div class="modal fade" id="selectionModal" tabindex="-1" aria-modal="true" role="dialog">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down modal-lg">
-    <div class="modal-content gm-modal">
-      <div class="modal-header gm-mhdr" id="selectionModalHdr">
-        <h5 class="modal-title gm-mtitle" id="selectionModalLabel">ব্যক্তি নির্বাচন</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body gm-mbody">
-        <!-- Step indicator -->
-        <div class="step-row">
-          <div class="step-dot active" id="stepDot1"></div>
-          <div class="step-line"></div>
-          <div class="step-dot" id="stepDot2"></div>
+  <div class="modal fade" id="selectionModal" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down modal-lg">
+      <div class="modal-content gm-modal">
+        <div class="modal-header gm-mhdr" id="selectionModalHdr">
+          <h5 class="modal-title gm-mtitle" id="selectionModalLabel">ব্যক্তি নির্বাচন</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
-        <p class="step-prompt" id="selectionPrompt">১ম ব্যক্তি নির্বাচন করুন</p>
-        <!-- Preview -->
-        <div class="sel-preview">
-          <div class="prev-slot" id="previewSlot1">
-            <div class="prev-av empty">?</div>
-            <span class="prev-nm">১ম ব্যক্তি</span>
+        <div class="modal-body gm-mbody">
+          <!-- Step indicator -->
+          <div class="step-row">
+            <div class="step-dot active" id="stepDot1"></div>
+            <div class="step-line"></div>
+            <div class="step-dot" id="stepDot2"></div>
           </div>
-          <div class="prev-arrow">→</div>
-          <div class="prev-slot" id="previewSlot2">
-            <div class="prev-av empty">?</div>
-            <span class="prev-nm">২য় ব্যক্তি</span>
+          <p class="step-prompt" id="selectionPrompt">১ম ব্যক্তি নির্বাচন করুন</p>
+          <!-- Preview -->
+          <div class="sel-preview">
+            <div class="prev-slot" id="previewSlot1">
+              <div class="prev-av empty">?</div>
+              <span class="prev-nm">১ম ব্যক্তি</span>
+            </div>
+            <div class="prev-arrow">→</div>
+            <div class="prev-slot" id="previewSlot2">
+              <div class="prev-av empty">?</div>
+              <span class="prev-nm">২য় ব্যক্তি</span>
+            </div>
           </div>
+          <!-- Person grid -->
+          <div class="person-grid" id="personGrid"></div>
         </div>
-        <!-- Person grid -->
-        <div class="person-grid" id="personGrid"></div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ── RESULT MODAL ── -->
-<div class="modal fade" id="resultModal" tabindex="-1" aria-modal="true" role="dialog">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
-    <div class="modal-content gm-modal" id="resultModalContent">
-      <div class="modal-header gm-mhdr" id="resultModalHeader">
-        <h5 class="modal-title gm-mtitle" id="resultModalLabel">ফলাফল</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body gm-mbody" id="resultModalBody"></div>
-      <div class="modal-footer gm-mftr">
-        <button type="button" class="btn-ok" data-bs-dismiss="modal" id="resultOkBtn">ঠিক আছে 👍</button>
+  <!-- ── RESULT MODAL ── -->
+  <div class="modal fade" id="resultModal" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
+      <div class="modal-content gm-modal" id="resultModalContent">
+        <div class="modal-header gm-mhdr" id="resultModalHeader">
+          <h5 class="modal-title gm-mtitle" id="resultModalLabel">ফলাফল</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body gm-mbody" id="resultModalBody"></div>
+        <div class="modal-footer gm-mftr">
+          <button type="button" class="btn-ok" data-bs-dismiss="modal" id="resultOkBtn">ঠিক আছে 👍</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ── TOAST ── -->
-<div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3" style="z-index:9999">
-  <div id="gameToast" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body" id="toastBody">বার্তা</div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+  <!-- ── TOAST ── -->
+  <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3" style="z-index:9999">
+    <div id="gameToast" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive"
+      aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastBody">বার্তা</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
     </div>
   </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
