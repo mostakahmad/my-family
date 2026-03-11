@@ -10,21 +10,21 @@
    Avatar image: avatar.img ফিল্ডে path দিন।
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const FAMILY_DATA = [
-  { id:'rouf',     name:'Rouf',     nameBn:'রওফ',      gender:'male',   spouseIds:['anjuman'],  parentIds:[],                         childrenIds:['mostak','feroza','sharmin','jannat'], generation:0, ageRank:1,  avatar:{img:'',initials:'র',  color:'#a855f7'} },
-  { id:'anjuman',  name:'Anjuman',  nameBn:'আঞ্জুমান', gender:'female', spouseIds:['rouf'],     parentIds:[],                         childrenIds:['mostak','feroza','sharmin','jannat'], generation:0, ageRank:2,  avatar:{img:'',initials:'আ',  color:'#c084fc'} },
-  { id:'mostak',   name:'Mostak',   nameBn:'মোস্তাক',  gender:'male',   spouseIds:['shetu'],    parentIds:['rouf','anjuman'],          childrenIds:[], generation:1, ageRank:3,  avatar:{img:'',initials:'ম',  color:'#06b6d4'} },
-  { id:'shetu',    name:'Shetu',    nameBn:'শেতু',     gender:'female', spouseIds:['mostak'],   parentIds:[],                         childrenIds:[], generation:1, ageRank:4,  avatar:{img:'',initials:'শে', color:'#38bdf8'} },
-  { id:'feroza',   name:'Feroza',   nameBn:'ফেরোজা',   gender:'female', spouseIds:['anis'],     parentIds:['rouf','anjuman'],          childrenIds:['sumaiya','tasfia','suaiba','mohammad'], generation:1, ageRank:5, avatar:{img:'',initials:'ফে', color:'#f59e0b'} },
-  { id:'anis',     name:'Anis',     nameBn:'আনিস',     gender:'male',   spouseIds:['feroza'],   parentIds:[],                         childrenIds:['sumaiya','tasfia','suaiba','mohammad'], generation:1, ageRank:6, avatar:{img:'',initials:'আন', color:'#fbbf24'} },
-  { id:'sumaiya',  name:'Sumaiya',  nameBn:'সুমাইয়া', gender:'female', spouseIds:[],           parentIds:['anis','feroza'],           childrenIds:[], generation:2, ageRank:11, avatar:{img:'',initials:'সু', color:'#fcd34d'} },
-  { id:'tasfia',   name:'Tasfia',   nameBn:'তাসফিয়া', gender:'female', spouseIds:[],           parentIds:['anis','feroza'],           childrenIds:[], generation:2, ageRank:12, avatar:{img:'',initials:'তা', color:'#f97316'} },
-  { id:'suaiba',   name:'Suaiba',   nameBn:'সুআইবা',   gender:'female', spouseIds:[],           parentIds:['anis','feroza'],           childrenIds:[], generation:2, ageRank:13, avatar:{img:'',initials:'সুআ',color:'#fb923c'} },
-  { id:'mohammad', name:'Mohammad', nameBn:'মোহাম্মদ', gender:'male',   spouseIds:[],           parentIds:['anis','feroza'],           childrenIds:[], generation:2, ageRank:14, avatar:{img:'',initials:'মো', color:'#ea580c'} },
-  { id:'sharmin',  name:'Sharmin',  nameBn:'শারমিন',   gender:'female', spouseIds:['aziz'],     parentIds:['rouf','anjuman'],          childrenIds:['abdullah'], generation:1, ageRank:7,  avatar:{img:'',initials:'শা', color:'#10b981'} },
-  { id:'aziz',     name:'Aziz',     nameBn:'আজিজ',     gender:'male',   spouseIds:['sharmin'],  parentIds:[],                         childrenIds:['abdullah'], generation:1, ageRank:8,  avatar:{img:'',initials:'আজ', color:'#34d399'} },
-  { id:'abdullah', name:'Abdullah', nameBn:'আব্দুল্লাহ',gender:'male',  spouseIds:[],           parentIds:['aziz','sharmin'],          childrenIds:[], generation:2, ageRank:15, avatar:{img:'',initials:'আব', color:'#6ee7b7'} },
-  { id:'jannat',   name:'Jannat',   nameBn:'জান্নাত',  gender:'female', spouseIds:['iftekhar'], parentIds:['rouf','anjuman'],          childrenIds:[], generation:1, ageRank:9,  avatar:{img:'',initials:'জা', color:'#ec4899'} },
-  { id:'iftekhar', name:'Iftekhar', nameBn:'ইফতেখার',  gender:'male',   spouseIds:['jannat'],   parentIds:[],                         childrenIds:[], generation:1, ageRank:10, avatar:{img:'',initials:'ই',  color:'#f472b6'} },
+  { id:'rouf',     name:'Rouf',     nameBn:'রওফ',      gender:'male',   spouseIds:['anjuman'],  parentIds:[],                         childrenIds:['mostak','feroza','sharmin','jannat'], generation:0, ageRank:1,  avatar:{img:'images/rouf.svg',initials:'র',  color:'#a855f7'} },
+  { id:'anjuman',  name:'Anjuman',  nameBn:'আঞ্জুমান', gender:'female', spouseIds:['rouf'],     parentIds:[],                         childrenIds:['mostak','feroza','sharmin','jannat'], generation:0, ageRank:2,  avatar:{img:'images/anjuman.svg',initials:'আ',  color:'#c084fc'} },
+  { id:'mostak',   name:'Mostak',   nameBn:'মোস্তাক',  gender:'male',   spouseIds:['shetu'],    parentIds:['rouf','anjuman'],          childrenIds:[], generation:1, ageRank:3,  avatar:{img:'images/mostak.svg',initials:'ম',  color:'#06b6d4'} },
+  { id:'shetu',    name:'Shetu',    nameBn:'শেতু',     gender:'female', spouseIds:['mostak'],   parentIds:[],                         childrenIds:[], generation:1, ageRank:4,  avatar:{img:'images/shetu.svg',initials:'শে', color:'#38bdf8'} },
+  { id:'feroza',   name:'Feroza',   nameBn:'ফেরোজা',   gender:'female', spouseIds:['anis'],     parentIds:['rouf','anjuman'],          childrenIds:['sumaiya','tasfia','suaiba','mohammad'], generation:1, ageRank:5, avatar:{img:'images/feroza.svg',initials:'ফে', color:'#f59e0b'} },
+  { id:'anis',     name:'Anis',     nameBn:'আনিস',     gender:'male',   spouseIds:['feroza'],   parentIds:[],                         childrenIds:['sumaiya','tasfia','suaiba','mohammad'], generation:1, ageRank:6, avatar:{img:'images/anis.svg',initials:'আন', color:'#fbbf24'} },
+  { id:'sumaiya',  name:'Sumaiya',  nameBn:'সুমাইয়া', gender:'female', spouseIds:[],           parentIds:['anis','feroza'],           childrenIds:[], generation:2, ageRank:11, avatar:{img:'images/sumaiya.svg',initials:'সু', color:'#fcd34d'} },
+  { id:'tasfia',   name:'Tasfia',   nameBn:'তাসফিয়া', gender:'female', spouseIds:[],           parentIds:['anis','feroza'],           childrenIds:[], generation:2, ageRank:12, avatar:{img:'images/tasfia.svg',initials:'তা', color:'#f97316'} },
+  { id:'suaiba',   name:'Suaiba',   nameBn:'সুআইবা',   gender:'female', spouseIds:[],           parentIds:['anis','feroza'],           childrenIds:[], generation:2, ageRank:13, avatar:{img:'images/suaiba.svg',initials:'সুআ',color:'#fb923c'} },
+  { id:'mohammad', name:'Mohammad', nameBn:'মোহাম্মদ', gender:'male',   spouseIds:[],           parentIds:['anis','feroza'],           childrenIds:[], generation:2, ageRank:14, avatar:{img:'images/mohammad.svg',initials:'মো', color:'#ea580c'} },
+  { id:'sharmin',  name:'Sharmin',  nameBn:'শারমিন',   gender:'female', spouseIds:['aziz'],     parentIds:['rouf','anjuman'],          childrenIds:['abdullah'], generation:1, ageRank:7,  avatar:{img:'images/sharmin.svg',initials:'শা', color:'#10b981'} },
+  { id:'aziz',     name:'Aziz',     nameBn:'আজিজ',     gender:'male',   spouseIds:['sharmin'],  parentIds:[],                         childrenIds:['abdullah'], generation:1, ageRank:8,  avatar:{img:'images/aziz.svg',initials:'আজ', color:'#34d399'} },
+  { id:'abdullah', name:'Abdullah', nameBn:'আব্দুল্লাহ',gender:'male',  spouseIds:[],           parentIds:['aziz','sharmin'],          childrenIds:[], generation:2, ageRank:15, avatar:{img:'images/abdullah.svg',initials:'আব', color:'#6ee7b7'} },
+  { id:'jannat',   name:'Jannat',   nameBn:'জান্নাত',  gender:'female', spouseIds:['iftekhar'], parentIds:['rouf','anjuman'],          childrenIds:[], generation:1, ageRank:9,  avatar:{img:'images/jannat.svg',initials:'জা', color:'#ec4899'} },
+  { id:'iftekhar', name:'Iftekhar', nameBn:'ইফতেখার',  gender:'male',   spouseIds:['jannat'],   parentIds:[],                         childrenIds:[], generation:1, ageRank:10, avatar:{img:'images/iftekhar.svg',initials:'ই',  color:'#f472b6'} },
 ];
 const memberMap = {};
 FAMILY_DATA.forEach(m => { memberMap[m.id] = m; });
@@ -351,7 +351,11 @@ function updatePrevSlot(slotId, m, def) {
   const el = document.getElementById(slotId);
   if (!el) return;
   if (!m) { el.innerHTML=`<div class="prev-av empty">?</div><span class="prev-nm">${def}</span>`; return; }
-  el.innerHTML=`<div class="prev-av" style="background:linear-gradient(135deg,${m.avatar.color}cc,${m.avatar.color}66)">${m.avatar.initials||m.name[0]}</div><span class="prev-nm">${m.nameBn}</span>`;
+  let content = m.avatar.initials || m.name[0];
+  if (m.avatar.img) {
+    content = `<img src="${m.avatar.img}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+  }
+  el.innerHTML=`<div class="prev-av" style="background:linear-gradient(135deg,${m.avatar.color}cc,${m.avatar.color}66)">${content}</div><span class="prev-nm">${m.nameBn}</span>`;
 }
 
 function buildPersonGrid(disabledId) {
@@ -361,7 +365,11 @@ function buildPersonGrid(disabledId) {
     const card = document.createElement('div');
     card.className = 'person-card' + (m.id===disabledId ? ' disabled' : '');
     card.dataset.id = m.id;
-    card.innerHTML = `<div class="pc-av" style="background:linear-gradient(135deg,${m.avatar.color}cc,${m.avatar.color}66)">${m.avatar.initials||m.name[0]}</div><span class="pc-nm">${m.nameBn}</span>`;
+    let content = m.avatar.initials || m.name[0];
+    if (m.avatar.img) {
+      content = `<img src="${m.avatar.img}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+    }
+    card.innerHTML = `<div class="pc-av" style="background:linear-gradient(135deg,${m.avatar.color}cc,${m.avatar.color}66)">${content}</div><span class="pc-nm">${m.nameBn}</span>`;
     card.addEventListener('click', () => { SFX.tap(); onPersonPick(m.id); });
     grid.appendChild(card);
   });
@@ -576,15 +584,18 @@ function showResultModal({ p1, p2, rel, ac, ok, pts, msg }) {
 
   const aged = (() => { const d=ageDiff(p1.id,p2.id); return d==='smaller'?`${p1.nameBn} বয়সে বড়`:d==='larger'?`${p1.nameBn} বয়সে ছোট`:'বয়স সমান'; })();
 
+  const p1Content = p1.avatar.img ? `<img src="${p1.avatar.img}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">` : (p1.avatar.initials || p1.name[0]);
+  const p2Content = p2.avatar.img ? `<img src="${p2.avatar.img}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">` : (p2.avatar.initials || p2.name[0]);
+
   body.innerHTML = `
     <div class="result-persons">
       <div class="result-person">
-        <div class="result-avatar" style="background:linear-gradient(135deg,${p1.avatar.color}cc,${p1.avatar.color}66)">${p1.avatar.initials||p1.name[0]}</div>
+        <div class="result-avatar" style="background:linear-gradient(135deg,${p1.avatar.color}cc,${p1.avatar.color}66)">${p1Content}</div>
         <span class="result-pname">${p1.nameBn}</span>
       </div>
       <div class="result-arrow">→</div>
       <div class="result-person">
-        <div class="result-avatar" style="background:linear-gradient(135deg,${p2.avatar.color}cc,${p2.avatar.color}66)">${p2.avatar.initials||p2.name[0]}</div>
+        <div class="result-avatar" style="background:linear-gradient(135deg,${p2.avatar.color}cc,${p2.avatar.color}66)">${p2Content}</div>
         <span class="result-pname">${p2.nameBn}</span>
       </div>
     </div>
